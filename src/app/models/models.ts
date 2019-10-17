@@ -52,3 +52,19 @@ export interface StoryList {
   params: string;
   processingTimeMS: number;
 }
+
+export interface Story {
+  id: number;
+  created_at: Date;
+  created_at_i: number;
+  type: string;
+  author: string;
+  title: string;
+  url: string;
+  text?: any;
+  points: number;
+  parent_id?: any;
+  story_id?: any;
+  children: any[];
+  options: any[];
+}

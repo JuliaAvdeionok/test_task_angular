@@ -1,16 +1,22 @@
 <table class="storyTable">
   <thead>
   <tr>
-    <th> author </th>
-    <th> title </th>
-    <th> url </th>
+    <th>author</th>
+    <th>title</th>
+    <th>url</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let el of storyList.hits">
-    <th scope="row">{{el.author}}</th>
-    <td>{{el.title}}</td>
-    <td>{{el.url}}</td>
+  <tr *ngFor="let item of (storyList| async)?.hits"
+      (click)="openModal(item.objectID)">
+    <th scope="row">{{item.author}}</th>
+    <td>{{item.title}}</td>
+    <td>{{item.url}}</td>
   </tr>
   </tbody>
 </table>
+<router-outlet></router-outlet>
+<jw-modal id="storyModal">
+  <app-story [storyObjectId]="pickedId"></app-story>
+  <button (click)="closeModal('storyModal')">Close</button>
+</jw-modal>
