@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StoryTableService } from '../../services/storyTable/story-table.service';
-import { throwError } from 'rxjs';
+import { interval, throwError } from 'rxjs';
 import { StoryList } from '../../models/models';
+import { startWith, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-story-table',
@@ -15,10 +16,17 @@ export class StoryTableComponent implements OnInit {
   constructor(private storyTableService: StoryTableService) { }
 
   ngOnInit() {
-    this.storyTableService.getStory()
+    this.pollStoryList();
+  }
+
+  pollStoryList() {
+    interval(10000)
+      .pipe(
+        startWith(0),
+        switchMap(() => this.storyTableService.getStory())
+      )
       .subscribe(
         storyList => {
-          console.log('JournalList in 2:' + JSON.stringify(storyList));
           this.storyList = storyList;
         },
         error => {
