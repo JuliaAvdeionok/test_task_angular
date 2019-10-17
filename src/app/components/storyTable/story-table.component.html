@@ -1,0 +1,16 @@
+<table>
+  <thead>
+  <tr>
+    <th> author </th>
+    <th> title </th>
+    <th> url </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let el of storyList.hits">
+    <th scope="row">{{el.author}}</th>
+    <td>{{el.title}}</td>
+    <td>{{el.url}}</td>
+  </tr>
+  </tbody>
+</table>
