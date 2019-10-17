@@ -1,0 +1,10 @@
+<div class="form-group search">
+  <label>Search by title:
+    <input (ngModelChange)="updateSearchModel($event)"
+           [(ngModel)]="searchModel"
+           class="form-control"
+           name="searching"
+           placeholder="Search"
+           type="text">
+  </label>
+</div>

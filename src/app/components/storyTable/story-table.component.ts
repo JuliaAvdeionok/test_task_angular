@@ -13,12 +13,12 @@ import { ModalService } from '../../_modal';
 export class StoryTableComponent implements OnInit {
   storyList: Observable<StoryList>;
   pickedId: string;
-
+  searchModel: string;
+  storyModalId: string;
 
   constructor(private storyTableService: StoryTableService,
               private modalService: ModalService) {
-    // const  storyListInit  = {} as StoryList;
-    // this.storyList = Observable.of<StoryList>(storyListInit)
+    this.storyModalId = "storyModalId";
   }
 
   ngOnInit() {
@@ -31,12 +31,11 @@ export class StoryTableComponent implements OnInit {
         startWith(0),
         switchMap(() => this.storyTableService.getStory())
       );
-
 }
 
   openModal(id: string) {
     this.pickedId = id;
-    this.modalService.open('storyModal');
+    this.modalService.open(this.storyModalId);
   }
 
   closeModal(id: string) {

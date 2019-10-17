@@ -1,3 +1,4 @@
+<app-search [(searchModel)]="searchModel"></app-search>
 <table class="storyTable">
   <thead>
   <tr>
@@ -7,8 +8,8 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let item of (storyList| async)?.hits"
-      (click)="openModal(item.objectID)">
+  <tr (click)="openModal(item.objectID)"
+      *ngFor="let item of (storyList| async)?.hits | listFilter : searchModel">
     <th scope="row">{{item.author}}</th>
     <td>{{item.title}}</td>
     <td>{{item.url}}</td>
@@ -16,7 +17,7 @@
   </tbody>
 </table>
 <router-outlet></router-outlet>
-<jw-modal id="storyModal">
+<jw-modal [id]='storyModalId'>
   <app-story [storyObjectId]="pickedId"></app-story>
-  <button (click)="closeModal('storyModal')">Close</button>
+  <button (click)="closeModal(storyModalId)">Close</button>
 </jw-modal>

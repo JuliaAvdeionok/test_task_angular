@@ -9,18 +9,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from './_modal';
 import { StoryComponent } from './components/story/story.component';
 import { StoryService } from './services/story/story.service';
+import { SearchComponent } from './components/search/search.component';
+import { ListFilterPipe } from './components/storyTable/list-filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     StoryTableComponent,
-    StoryComponent
+    StoryComponent,
+    SearchComponent,
+    ListFilterPipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ModalModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     StoryTableService,
